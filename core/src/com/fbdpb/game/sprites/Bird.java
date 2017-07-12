@@ -52,4 +52,8 @@ public class Bird {
         velocity.y = 300;
     }
 
+    public void dispose() {
+        bird.dispose();
+    }
+
 }

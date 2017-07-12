@@ -14,6 +14,7 @@ public class MenuState extends State {
     private Texture playBtn;
     public MenuState(GameStateManager gsm) {
         super(gsm);
+        cam.setToOrtho(false, FlappieBirtMovile.WIDTH / 2, FlappieBirtMovile.HEIGHT / 2);
         background = new Texture("space_background.jpg");
         playBtn = new Texture("playbutton.png");
     }
@@ -22,7 +23,6 @@ public class MenuState extends State {
     public void handleInput() {
         if(Gdx.input.justTouched()){
             gsm.set(new PlayState(gsm));
-            dispose();
         }
     }
 
@@ -33,9 +33,12 @@ public class MenuState extends State {
 
     @Override
     public void render(SpriteBatch sb) {
+        sb.setProjectionMatrix(cam.combined);
         sb.begin();
-        sb.draw(background, 0, 0, FlappieBirtMovile.WIDTH, FlappieBirtMovile.HEIGHT);
-        sb.draw(playBtn, (FlappieBirtMovile.WIDTH / 2) - (playBtn.getWidth() / 2), FlappieBirtMovile.HEIGHT / 3);
+        //sb.draw(background, 0, 0, FlappieBirtMovile.WIDTH, FlappieBirtMovile.HEIGHT);
+        //sb.draw(playBtn, (FlappieBirtMovile.WIDTH / 2) - (playBtn.getWidth() / 2), FlappieBirtMovile.HEIGHT / 3);
+        sb.draw(background, 0, 0);
+        sb.draw(playBtn, cam.position.x - playBtn.getWidth()/2, cam.position.y);
         sb.end();
     }
 
@@ -43,5 +46,6 @@ public class MenuState extends State {
     public void dispose() {
         background.dispose();
         playBtn.dispose();
+        //System.out.println("Menu State Disposed LOL");
     }
 }
