@@ -20,6 +20,9 @@ public class PlayState extends State {
     private String scoreName;
     BitmapFont testing;
     /////
+    private static int bestScore = 0;
+    private String bestScoreStr;
+    BitmapFont pbFont;
 
     private static final int TUBE_SPACING = 125;
     private static final int TUBE_COUNT = 4;
@@ -43,7 +46,9 @@ public class PlayState extends State {
         }
         score = 0;
         scoreName = "score: 0";
+        bestScoreStr = "personal best: " + bestScore;
         testing = new BitmapFont();
+        pbFont = new BitmapFont();
     }
 
     @Override
@@ -68,6 +73,8 @@ public class PlayState extends State {
             }
         }
         if (bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){ //si choca con el suelo
+            if (score > bestScore)
+                bestScore = score;
             gsm.set(new MenuState(gsm)); //Menu
         }
         cam.update();
@@ -82,7 +89,9 @@ public class PlayState extends State {
         for(Tube tube : tubes){
             sb.draw(tube.getTopTube(), tube.getPosTopTube().x, tube.getPosTopTube().y);
             sb.draw(tube.getBottomTube(), tube.getPosBotTube().x, tube.getPosBotTube().y);
-            if (tube.collides(bird.getBounds()) /*|| bird.getPosition().y < 0*/){ //si choca con un tubito
+            if (tube.collides(bird.getBounds())){ //si choca con un tubito
+                if (score > bestScore)
+                    bestScore = score;
                 gsm.set(new MenuState(gsm));
             }
         }
@@ -90,6 +99,8 @@ public class PlayState extends State {
         sb.draw(ground, groundPos2.x, groundPos2.y);
         testing.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         testing.draw(sb, scoreName, bird.getPosition().x - 20, bird.getPosition().y);
+        pbFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
+        pbFont.draw(sb, bestScoreStr, bird.getPosition().x+96, 390);
         sb.end();
     }
 
