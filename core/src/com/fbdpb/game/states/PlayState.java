@@ -16,7 +16,7 @@ import com.fbdpb.game.sprites.Tube;
 
 public class PlayState extends State {
     /////
-    private int score;
+
     private String scoreName;
     BitmapFont testing;
     /////
