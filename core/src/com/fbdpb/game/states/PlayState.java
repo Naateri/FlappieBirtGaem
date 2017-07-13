@@ -69,7 +69,11 @@ public class PlayState extends State {
             if(cam.position.x - (cam.viewportWidth/2) > tube.getPosTopTube().x + tube.getTopTube().getWidth()){
                 tube.reposition(tube.getPosTopTube().x + ((Tube.TUBE_WIDTH + TUBE_SPACING) * TUBE_COUNT));
                 score++;
-                scoreName = "score: " + score;
+                if(score != 42) {
+                    scoreName = "score: " + score;
+                } else {
+                    scoreName = "/termsAndPrivacy.html"; //easter egg
+                }
             }
         }
         if (bird.getPosition().y <= ground.getHeight() + GROUND_Y_OFFSET){ //si choca con el suelo
@@ -100,7 +104,7 @@ public class PlayState extends State {
         testing.setColor(1.0f, 1.0f, 1.0f, 1.0f);
         testing.draw(sb, scoreName, bird.getPosition().x - 20, bird.getPosition().y);
         pbFont.setColor(1.0f, 1.0f, 1.0f, 1.0f);
-        pbFont.draw(sb, bestScoreStr, bird.getPosition().x+96, 390);
+        pbFont.draw(sb, bestScoreStr, bird.getPosition().x+88, 390);
         sb.end();
     }
 
