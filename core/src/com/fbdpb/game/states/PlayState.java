@@ -17,6 +17,8 @@ import com.fbdpb.game.sprites.Tube;
 public class PlayState extends State {
     /////
 
+    //private String name = text;
+
     private String scoreName;
     BitmapFont testing;
     /////
@@ -56,6 +58,7 @@ public class PlayState extends State {
         if(Gdx.input.justTouched()){
             bird.jump();
         }
+        Gdx.app.log("text", text);
     }
 
     @Override

@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector3;
 
 public abstract class State {
     protected static int score;
+    protected static String text = "DefaultName"; //estatico para que se guarde el input anterior
     protected OrthographicCamera cam;
     protected Vector3 mouse;
     protected GameStateManager gsm;

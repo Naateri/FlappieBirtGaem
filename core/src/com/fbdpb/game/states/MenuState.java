@@ -17,7 +17,7 @@ import com.fbdpb.game.FlappieBirtMovile;
 public class MenuState extends State implements TextInputListener{
     private Texture background;
     private Texture playBtn;
-    private static String text = "DefaultName"; //estatico para que se guarde el input anterior
+    private String name = text;
     //public String text;
     public MenuState(GameStateManager gsm) {
         super(gsm);
@@ -30,7 +30,7 @@ public class MenuState extends State implements TextInputListener{
     @Override
     public void handleInput() {
         if(Gdx.input.justTouched()) {
-            Gdx.input.getTextInput(this, "Enter your name", text, "ayy");
+            Gdx.input.getTextInput(this, "Enter your name", name, "ayy");
         }
     }
 
